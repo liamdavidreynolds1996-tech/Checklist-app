@@ -112,7 +112,7 @@ export function CategorySection({
           {onAddTask && (
             <div className="mb-3">
               {showInput ? (
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <input
                     type="text"
                     value={newTaskTitle}
@@ -128,32 +128,34 @@ export function CategorySection({
                     className="flex-1 px-3 py-2 bg-black border border-yellow-400/50 rounded-lg text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-yellow-400"
                     autoFocus
                   />
-                  <button
-                    onClick={handleAddTask}
-                    disabled={!newTaskTitle.trim()}
-                    className="px-4 py-2 bg-yellow-400 hover:bg-yellow-300 disabled:bg-zinc-700 disabled:text-zinc-500 text-black rounded-lg text-sm font-medium transition-colors"
-                  >
-                    Add
-                  </button>
-                  <button
-                    onClick={() => {
-                      setShowInput(false);
-                      setNewTaskTitle('');
-                    }}
-                    className="px-3 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg text-sm transition-colors"
-                  >
-                    Cancel
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={handleAddTask}
+                      disabled={!newTaskTitle.trim()}
+                      className="flex-1 sm:flex-initial px-4 py-2 bg-yellow-400 hover:bg-yellow-300 disabled:bg-zinc-700 disabled:text-zinc-500 text-black rounded-lg text-sm font-medium transition-colors"
+                    >
+                      Add
+                    </button>
+                    <button
+                      onClick={() => {
+                        setShowInput(false);
+                        setNewTaskTitle('');
+                      }}
+                      className="flex-1 sm:flex-initial px-3 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg text-sm transition-colors"
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <button
                   onClick={() => setShowInput(true)}
-                  className="w-full py-2 border-2 border-dashed border-zinc-700 hover:border-yellow-400 rounded-lg text-sm text-zinc-500 hover:text-yellow-400 transition-colors flex items-center justify-center gap-2"
+                  className="w-full py-3 sm:py-2 border-2 border-dashed border-zinc-700 hover:border-yellow-400 rounded-lg text-sm text-zinc-500 hover:text-yellow-400 transition-colors flex items-center justify-center gap-2"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                   </svg>
-                  Add task to {category.name}
+                  <span className="text-xs sm:text-sm">Add task to {category.name}</span>
                 </button>
               )}
             </div>

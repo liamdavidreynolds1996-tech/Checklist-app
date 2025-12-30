@@ -72,14 +72,14 @@ export function TaskForm({ onSubmit, defaultCategory = 'personal' }: TaskFormPro
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
-      <div className="flex gap-2">
-        <div className="flex-1 relative">
+      <div className="flex flex-col sm:flex-row gap-2">
+        <div className="flex-1 relative order-1 sm:order-1">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Add a task... (e.g., 'gym every Monday at 6am')"
-            className="w-full px-4 py-3 bg-zinc-900 border-2 border-zinc-800 rounded-xl text-sm text-white focus:outline-none focus:border-yellow-400 placeholder-zinc-600"
+            className="w-full px-4 py-3 bg-zinc-900 border-2 border-zinc-800 rounded-xl text-sm sm:text-base text-white focus:outline-none focus:border-yellow-400 placeholder-zinc-600"
           />
 
           {/* Parsing preview */}
@@ -116,35 +116,38 @@ export function TaskForm({ onSubmit, defaultCategory = 'personal' }: TaskFormPro
           )}
         </div>
 
-        <VoiceInput onTranscript={handleVoiceInput} />
+        <div className="flex gap-2 order-2 sm:order-2">
+          <VoiceInput onTranscript={handleVoiceInput} />
 
-        <button
-          type="button"
-          onClick={() => setShowAdvanced(!showAdvanced)}
-          className={`p-3 rounded-xl transition-colors border-2 ${
-            showAdvanced
-              ? 'bg-yellow-400 text-black border-yellow-400'
-              : 'bg-zinc-900 border-zinc-800 hover:border-yellow-400 text-white'
-          }`}
-          title="Advanced options"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-            />
-          </svg>
-        </button>
+          <button
+            type="button"
+            onClick={() => setShowAdvanced(!showAdvanced)}
+            className={`p-3 rounded-xl transition-colors border-2 flex-shrink-0 ${
+              showAdvanced
+                ? 'bg-yellow-400 text-black border-yellow-400'
+                : 'bg-zinc-900 border-zinc-800 hover:border-yellow-400 text-white'
+            }`}
+            title="Advanced options"
+            aria-label="Advanced options"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+              />
+            </svg>
+          </button>
 
-        <button
-          type="submit"
-          disabled={!input.trim()}
-          className="px-6 py-3 bg-yellow-400 hover:bg-yellow-300 disabled:bg-zinc-800 disabled:text-zinc-600 text-black rounded-xl text-sm font-medium transition-colors"
-        >
-          Add
-        </button>
+          <button
+            type="submit"
+            disabled={!input.trim()}
+            className="px-6 py-3 bg-yellow-400 hover:bg-yellow-300 disabled:bg-zinc-800 disabled:text-zinc-600 text-black rounded-xl text-sm font-medium transition-colors flex-1 sm:flex-initial"
+          >
+            Add
+          </button>
+        </div>
       </div>
 
       {/* Advanced Options */}
