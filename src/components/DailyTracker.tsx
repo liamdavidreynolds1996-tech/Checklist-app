@@ -94,30 +94,30 @@ export function DailyTracker({
   return (
     <div className="space-y-6">
       {/* Header with date and stats */}
-      <div className="bg-zinc-900 border-2 border-yellow-400 rounded-2xl p-6">
+      <div className="bg-zinc-900 border-2 border-yellow-400 rounded-2xl p-4 sm:p-6">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold text-white">{todayStr}</h2>
-            <p className="text-yellow-400 mt-1">Your daily checklist</p>
+            <h2 className="text-xl sm:text-2xl font-bold text-white">{todayStr}</h2>
+            <p className="text-yellow-400 mt-1 text-sm sm:text-base">Your daily checklist</p>
           </div>
 
-          <div className="flex gap-4">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4">
             {/* Streak */}
-            <div className="bg-black border border-zinc-800 rounded-xl px-4 py-3 text-center">
-              <div className="text-2xl font-bold text-yellow-400">{streak}</div>
-              <div className="text-xs text-zinc-500">Day Streak</div>
+            <div className="bg-black border border-zinc-800 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-center">
+              <div className="text-xl sm:text-2xl font-bold text-yellow-400">{streak}</div>
+              <div className="text-[10px] sm:text-xs text-zinc-500">Day Streak</div>
             </div>
 
             {/* Today's Progress */}
-            <div className="bg-black border border-zinc-800 rounded-xl px-4 py-3 text-center">
-              <div className="text-2xl font-bold text-yellow-400">{todayProgress}%</div>
-              <div className="text-xs text-zinc-500">Complete</div>
+            <div className="bg-black border border-zinc-800 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-center">
+              <div className="text-xl sm:text-2xl font-bold text-yellow-400">{todayProgress}%</div>
+              <div className="text-[10px] sm:text-xs text-zinc-500">Complete</div>
             </div>
 
             {/* Completed Today */}
-            <div className="bg-black border border-zinc-800 rounded-xl px-4 py-3 text-center">
-              <div className="text-2xl font-bold text-white">{completedToday.length}</div>
-              <div className="text-xs text-zinc-500">Done Today</div>
+            <div className="bg-black border border-zinc-800 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-center">
+              <div className="text-xl sm:text-2xl font-bold text-white">{completedToday.length}</div>
+              <div className="text-[10px] sm:text-xs text-zinc-500">Done Today</div>
             </div>
           </div>
         </div>

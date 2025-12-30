@@ -113,10 +113,10 @@ export default function App() {
         onExportCSV={tasks.length > 0 ? exportToCSV : undefined}
       />
 
-      <main className="max-w-7xl mx-auto px-4 py-6">
+      <main className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
         {/* Task Input - Hidden on Shopping view */}
         {viewMode !== 'shopping' && (
-          <div className="mb-6">
+          <div className="mb-4 sm:mb-6">
             <TaskForm
               onSubmit={handleAddTask}
               defaultCategory={selectedCategory || 'personal'}
@@ -125,7 +125,7 @@ export default function App() {
         )}
 
         {/* View Mode Tabs */}
-        <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+        <div className="flex gap-2 mb-4 sm:mb-6 overflow-x-auto pb-2 -mx-3 sm:mx-0 px-3 sm:px-0 scrollbar-hide">
           {[
             { id: 'today', label: 'Today' },
             { id: 'categories', label: 'By Category' },
@@ -136,7 +136,7 @@ export default function App() {
             <button
               key={tab.id}
               onClick={() => setViewMode(tab.id as ViewMode)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
+              className={`px-3 sm:px-4 py-2.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
                 viewMode === tab.id
                   ? 'bg-yellow-400 text-black'
                   : 'bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 hover:border-yellow-400'
@@ -198,7 +198,7 @@ export default function App() {
 
             {/* Categories View */}
             {viewMode === 'categories' && (
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {CATEGORIES
                   .filter(cat => !selectedCategory || cat.id === selectedCategory)
                   .map((category) => (
@@ -234,10 +234,10 @@ export default function App() {
 
                   return (
                     <div key={timeframe}>
-                      <h3 className="text-lg font-semibold mb-3 text-yellow-400">
+                      <h3 className="text-base sm:text-lg font-semibold mb-3 text-yellow-400">
                         {labels[timeframe]} ({timeframeTasks.length})
                       </h3>
-                      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                      <div className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         {CATEGORIES.map((category) => {
                           const catTasks = timeframeTasks.filter(t => t.category === category.id);
                           if (catTasks.length === 0) return null;
@@ -333,9 +333,9 @@ export default function App() {
 
       {/* Firebase Setup Notice - Dismissible */}
       {!isFirebaseConfigured && !localModeNoticeHidden && (
-        <div className="fixed bottom-6 left-6 max-w-sm bg-zinc-900 border-2 border-yellow-400 rounded-xl p-4">
+        <div className="fixed bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-auto sm:max-w-sm bg-zinc-900 border-2 border-yellow-400 rounded-xl p-3 sm:p-4 shadow-xl">
           <div className="flex items-start justify-between gap-3">
-            <p className="text-sm text-zinc-300">
+            <p className="text-xs sm:text-sm text-zinc-300">
               <strong className="text-yellow-400">Local Mode:</strong> Data saved to browser only.
             </p>
             <button
@@ -343,7 +343,7 @@ export default function App() {
               className="text-zinc-500 hover:text-white transition-colors flex-shrink-0"
               aria-label="Dismiss notification"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
