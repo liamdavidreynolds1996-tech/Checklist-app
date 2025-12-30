@@ -2,18 +2,52 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <meta name="theme-color" content="#000000" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="format-detection" content="telephone=no" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>Daily Checklist</title>
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #121212; color: white; display: flex; justify-content: center; padding: 20px; }
+      .app-container { width: 100%; max-width: 400px; background: #1e1e1e; padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+      h1 { text-align: center; font-size: 1.5rem; margin-bottom: 20px; }
+      .input-box { display: flex; gap: 10px; margin-bottom: 20px; }
+      input { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #2a2a2a; color: white; }
+      button#add-btn { padding: 10px 20px; background: #007aff; border: none; border-radius: 8px; color: white; font-weight: bold; cursor: pointer; }
+      ul { list-style: none; padding: 0; }
+      li { background: #2a2a2a; margin-bottom: 10px; padding: 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; transition: 0.2s; }
+      .completed { text-decoration: line-through; opacity: 0.5; }
+      .delete-btn { color: #ff3b30; cursor: pointer; padding: 5px 10px; }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div class="app-container">
+      <h1>Daily Checklist</h1>
+      <div class="input-box">
+        <input type="text" id="todo-input" placeholder="What needs doing?">
+        <button id="add-btn">Add</button>
+      </div>
+      <ul id="todo-list"></ul>
+    </div>
+
+    <script>
+      const input = document.getElementById('todo-input');
+      const addBtn = document.getElementById('add-btn');
+      const list = document.getElementById('todo-list');
+
+      function addTask() {
+        if (!input.value.trim()) return;
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span onclick="this.parentElement.classList.toggle('completed')">${input.value}</span>
+          <span class="delete-btn" onclick="this.parentElement.remove()">Delete</span>
+        `;
+        list.appendChild(li);
+        input.value = '';
+      }
+
+      addBtn.onclick = addTask;
+      input.onkeypress = (e) => { if (e.key === 'Enter') addTask(); };
+    </script>
   </body>
 </html>
